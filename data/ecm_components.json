@@ -1,0 +1,136 @@
+{
+  "ecm_components": [
+    {
+      "name": "Collagen",
+      "roles": ["Structural support", "Tensile strength"],
+      "genes": {
+        "Type I": ["COL1A1", "COL1A2"],
+        "Type II": ["COL2A1"],
+        "Type III": ["COL3A1"],
+        "Type IV": ["COL4A1", "COL4A2"]
+      },
+      "interaction_partners": ["Integrins (ITGA1, ITGA2)", "Fibronectin (FN1)"],
+      "receptors": ["Integrins (ITGA1, ITGA2)", "DDR1", "DDR2"],
+      "interacting_cell_types": ["Fibroblasts", "Chondrocytes", "Osteoblasts", "Epithelial cells"],
+      "proteases": ["MMP-1", "MMP-8", "MMP-13", "MMP-2", "MMP-9"]
+    },
+    {
+      "name": "Elastin",
+      "roles": ["Elasticity in skin", "Elasticity in lungs", "Elasticity in vessels"],
+      "genes": ["ELN"],
+      "interaction_partners": ["Fibrillin (FBN1)", "Fibulin (FBLN5)", "Integrins"],
+      "receptors": ["Integrins (ITGAV, ITGB3)", "Elastin-binding protein (GLB1)", "Galectin-3 (LGALS3)"],
+      "interacting_cell_types": ["Smooth muscle cells", "Fibroblasts", "Endothelial cells"],
+      "proteases": ["MMP-2", "MMP-9", "MMP-12", "Neutrophil elastase"]
+    },
+    {
+      "name": "Fibronectin",
+      "roles": ["Cell adhesion", "Migration", "Wound healing"],
+      "genes": ["FN1"],
+      "interaction_partners": ["Integrins (ITGA5, ITGB1, ITGAV, ITGB3)", "Syndecans (SDC1, SDC4)", "Collagen"],
+      "receptors": ["Integrins (ITGA5, ITGB1, ITGAV, ITGB3)", "Syndecans (SDC1, SDC4)"],
+      "interacting_cell_types": ["Fibroblasts", "Endothelial cells", "Immune cells", "Epithelial cells"],
+      "proteases": ["MMP-2", "MMP-3", "MMP-7", "MMP-9", "ADAMTS-4", "ADAMTS-5"]
+    },
+    {
+      "name": "Laminin",
+      "roles": ["Basement membrane structure", "Cell differentiation"],
+      "genes": ["LAMA1", "LAMB1", "LAMC1"],
+      "interaction_partners": ["Integrins (ITGA3, ITGB1, ITGA6, ITGB4)", "Dystroglycan (DAG1)", "Syndecans (SDC1, SDC4)"],
+      "receptors": ["Integrins (ITGA3, ITGB1, ITGA6, ITGB4)", "Dystroglycan (DAG1)", "Laminin receptor (RPSA)"],
+      "interacting_cell_types": ["Epithelial cells", "Muscle cells", "Endothelial cells", "Stem cells"],
+      "proteases": ["MMP-2", "MMP-9", "MMP-14", "Cathepsins"]
+    },
+    {
+      "name": "Hyaluronic Acid (HA)",
+      "roles": ["Hydration", "ECM viscosity", "Cell migration"],
+      "genes": ["HAS1", "HAS2", "HAS3"],
+      "interaction_partners": ["CD44", "RHAMM (HMMR)", "Aggrecan (ACAN)", "Versican (VCAN)"],
+      "receptors": ["CD44", "RHAMM (HMMR)"],
+      "interacting_cell_types": ["Fibroblasts", "Immune cells", "Endothelial cells"],
+      "proteases": ["Hyaluronidase 1/2", "ADAMTS-1", "ADAMTS-4", "ADAMTS-5"]
+    },
+    {
+      "name": "Aggrecan",
+      "type": "Proteoglycan",
+      "roles": ["Cartilage structure", "Load-bearing"],
+      "genes": ["ACAN"],
+      "interaction_partners": ["Hyaluronic acid (HAS1, HAS2, HAS3)", "Link protein (HAPLN1)", "CD44"],
+      "receptors": ["CD44"],
+      "interacting_cell_types": ["Chondrocytes", "Fibroblasts"],
+      "proteases": ["ADAMTS-4", "ADAMTS-5", "MMP-3", "MMP-7", "MMP-13"]
+    },
+    {
+      "name": "Versican",
+      "type": "Proteoglycan",
+      "roles": ["ECM organization", "Cell adhesion"],
+      "genes": ["VCAN"],
+      "interaction_partners": ["Hyaluronic acid (HAS1, HAS2, HAS3)", "Fibronectin (FN1)"],
+      "receptors": ["CD44", "Integrins (varies by cell type)"],
+      "interacting_cell_types": ["Fibroblasts", "Immune cells", "Endothelial cells"],
+      "proteases": ["ADAMTS-4", "ADAMTS-5", "MMP-3", "MMP-7", "MMP-13"]
+    },
+    {
+      "name": "Decorin",
+      "type": "Proteoglycan",
+      "roles": ["Collagen organization", "Regulates TGF-β"],
+      "genes": ["DCN"],
+      "interaction_partners": ["Collagen (COL1A1, COL3A1)", "TGF-β (TGFB1)"],
+      "receptors": ["TGF-β receptors (TGFBR1, TGFBR2)", "TLR2", "TLR4"],
+      "interacting_cell_types": ["Fibroblasts", "Chondrocytes", "Immune cells"],
+      "proteases": ["MMP-3", "MMP-12", "ADAMTS-4", "ADAMTS-5"]
+    },
+    {
+      "name": "Tenascin-C",
+      "roles": ["Modulates cell adhesion", "Inflammation"],
+      "genes": ["TNC"],
+      "interaction_partners": ["Integrins (ITGA9, ITGB1, ITGAV, ITGB3)", "Fibronectin (FN1)", "Syndecans (SDC1, SDC4)"],
+      "receptors": ["Integrins (ITGA9, ITGB1, ITGAV, ITGB3)", "TLR4"],
+      "interacting_cell_types": ["Fibroblasts", "Immune cells", "Endothelial cells"],
+      "proteases": ["MMP-2", "MMP-9", "MMP-7"]
+    },
+    {
+      "name": "Osteopontin",
+      "roles": ["Immune recruitment", "Bone mineralization"],
+      "genes": ["SPP1"],
+      "interaction_partners": ["Integrins (ITGAV, ITGB3, ITGA4, ITGB1)", "CD44"],
+      "receptors": ["Integrins (ITGAV, ITGB3, ITGA4, ITGB1)", "CD44"],
+      "interacting_cell_types": ["Osteoclasts", "Macrophages", "Fibroblasts", "Epithelial cells"],
+      "proteases": ["MMP-3", "MMP-7", "MMP-9", "Thrombin"]
+    },
+    {
+      "name": "Perlecan",
+      "roles": ["Growth factor binding", "Basement membrane structure"],
+      "genes": ["HSPG2"],
+      "interaction_partners": ["Laminin (LAMA1, LAMB1, LAMC1)", "Collagen IV (COL4A1, COL4A2)", "FGF", "VEGF"],
+      "receptors": ["Integrins", "Growth factor receptors (e.g., FGFR1)"],
+      "interacting_cell_types": ["Endothelial cells", "Epithelial cells", "Chondrocytes", "Stem cells"],
+      "proteases": ["MMP-2", "MMP-9", "Cathepsin S"]
+    },
+    {
+      "name": "Vitronectin",
+      "roles": ["Cell adhesion", "Clot stabilization"],
+      "genes": ["VTN"],
+      "interaction_partners": ["Integrins (ITGAV, ITGB3, ITGAV, ITGB5)", "Plasminogen (PLG)", "PAI-1 (SERPINE1)"],
+      "receptors": ["Integrins (ITGAV, ITGB3, ITGAV, ITGB5)", "uPAR (PLAUR)"],
+      "interacting_cell_types": ["Endothelial cells", "Platelets", "Fibroblasts"],
+      "proteases": ["MMP-2", "MMP-9", "Plasmin"]
+    },
+    {
+      "name": "Biglycan",
+      "type": "Proteoglycan",
+      "roles": ["Collagen organization", "Inflammation"],
+      "genes": ["BGN"],
+      "interaction_partners": ["Collagen (COL1A1, COL3A1)", "TGF-β (TGFB1)", "BMPs"],
+      "receptors": ["TLR2", "TLR4", "TGF-β receptors (TGFBR1, TGFBR2)"],
+      "interacting_cell_types": ["Fibroblasts", "Immune cells", "Endothelial cells"],
+      "proteases": ["MMP-3", "MMP-12", "ADAMTS-4", "ADAMTS-5"]
+    }
+  ],
+  "metadata": {
+    "description": "Extracellular Matrix components in the brain with their molecular interactions and cell type specificity",
+    "version": "1.0.0",
+    "last_updated": "2025-01-01",
+    "source": "Brain_ECM.md"
+  }
+} 
