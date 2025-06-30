@@ -24,7 +24,6 @@ import {
   Build as BuildIcon,
   Psychology as PsychologyIcon
 } from '@mui/icons-material';
-import cellTypesJson from '../data/cell_types.json';
 
 const CellTypes = () => {
   const [cellTypesData, setCellTypesData] = useState([]);
@@ -33,15 +32,19 @@ const CellTypes = () => {
   const [selectedCellType, setSelectedCellType] = useState(0);
 
   useEffect(() => {
-    // Load cell types data from local JSON file
-    try {
-      setCellTypesData(cellTypesJson.cell_types || []);
-    } catch (err) {
-      setError('Failed to load cell types data');
-      console.error('Error loading cell types data:', err);
-    } finally {
-      setLoading(false);
+    async function loadCellTypes() {
+      try {
+        const res = await fetch(process.env.PUBLIC_URL + '/cell_types.json');
+        const data = await res.json();
+        setCellTypesData(data.cell_types || []);
+      } catch (err) {
+        setError('Failed to load cell types data');
+        console.error('Error loading cell types data:', err);
+      } finally {
+        setLoading(false);
+      }
     }
+    loadCellTypes();
   }, []);
 
   const handleCellTypeChange = (event, newValue) => {
