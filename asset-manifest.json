@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/Neural_ECM/static/css/main.ca95cff6.css",
+    "main.js": "/Neural_ECM/static/js/main.0bf8a000.js",
+    "index.html": "/Neural_ECM/index.html",
+    "main.ca95cff6.css.map": "/Neural_ECM/static/css/main.ca95cff6.css.map",
+    "main.0bf8a000.js.map": "/Neural_ECM/static/js/main.0bf8a000.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.ca95cff6.css",
+    "static/js/main.0bf8a000.js"
+  ]
+}
