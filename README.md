@@ -4,7 +4,7 @@ A comprehensive resource for understanding the Extracellular Matrix (ECM) compon
 
 ## Live Application
 
-[https://3dbmne-fr.github.io/Neural_ECM](https://3dbmne-fr.github.io/Neural_ECM)
+[https://3dbmne-fr.github.io/Neural_ECM](https://3DBMandNE-Lab.github.io/Neural_ECM)
 
 ## Overview
 
