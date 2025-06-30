@@ -5,7 +5,7 @@
 echo "🚀 Deploying Neural ECM Explorer to GitHub Pages..."
 
 # Check if we're in the right directory
-if [ ! -f "package.json" ]; then
+if [ ! -f "src/web/package.json" ]; then
     echo "❌ Please run this script from the repository root directory"
     exit 1
 fi

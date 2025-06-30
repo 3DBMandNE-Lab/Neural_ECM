@@ -22,7 +22,7 @@ import {
   Science as ScienceIcon,
   Search as SearchIcon
 } from '@mui/icons-material';
-import { api } from '../utils/api';
+import ecmDataJson from '../data/ecm_components.json';
 
 const ECMExplorer = () => {
   const [ecmData, setEcmData] = useState([]);
@@ -32,20 +32,16 @@ const ECMExplorer = () => {
   const [filteredData, setFilteredData] = useState([]);
 
   useEffect(() => {
-    const fetchECMData = async () => {
-      try {
-        const response = await api.get('/api/ecm');
-        setEcmData(response.data.ecm_components || []);
-        setFilteredData(response.data.ecm_components || []);
-      } catch (err) {
-        setError('Failed to load ECM data');
-        console.error('Error fetching ECM data:', err);
-      } finally {
-        setLoading(false);
-      }
-    };
-
-    fetchECMData();
+    // Load ECM data from local JSON file
+    try {
+      setEcmData(ecmDataJson.ecm_components || []);
+      setFilteredData(ecmDataJson.ecm_components || []);
+    } catch (err) {
+      setError('Failed to load ECM data');
+      console.error('Error loading ECM data:', err);
+    } finally {
+      setLoading(false);
+    }
   }, []);
 
   useEffect(() => {

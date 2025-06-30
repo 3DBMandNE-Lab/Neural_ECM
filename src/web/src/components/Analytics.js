@@ -26,7 +26,8 @@ import {
   Pie,
   Cell
 } from 'recharts';
-import { api } from '../utils/api';
+import ecmDataJson from '../data/ecm_components.json';
+import cellTypesJson from '../data/cell_types.json';
 
 const Analytics = () => {
   const [stats, setStats] = useState(null);
@@ -35,23 +36,58 @@ const Analytics = () => {
   const [error, setError] = useState(null);
 
   useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const [statsResponse, proteasesResponse] = await Promise.all([
-          api.get('/api/stats'),
-          api.get('/api/proteases')
-        ]);
-        setStats(statsResponse.data);
-        setProteases(proteasesResponse.data);
-      } catch (err) {
-        setError('Failed to load analytics data');
-        console.error('Error fetching analytics data:', err);
-      } finally {
-        setLoading(false);
+    // Compute stats and proteases from local JSON data
+    try {
+      const ecmComponents = ecmDataJson.ecm_components || [];
+      const cellTypes = cellTypesJson.cell_types || [];
+      // Stats
+      const uniqueGenes = new Set();
+      const uniqueProteases = new Set();
+      let totalGenes = 0;
+      let totalProteases = 0;
+      for (const component of ecmComponents) {
+        const genes = component.genes || [];
+        if (Array.isArray(genes)) {
+          totalGenes += genes.length;
+          genes.forEach(g => uniqueGenes.add(g));
+        } else if (typeof genes === 'object') {
+          for (const geneList of Object.values(genes)) {
+            totalGenes += geneList.length;
+            geneList.forEach(g => uniqueGenes.add(g));
+          }
+        }
+        const proteases = component.proteases || [];
+        totalProteases += proteases.length;
+        proteases.forEach(p => uniqueProteases.add(p));
       }
-    };
-
-    fetchData();
+      const stats = {
+        total_ecm_components: ecmComponents.length,
+        total_cell_types: cellTypes.length,
+        total_genes: totalGenes,
+        total_proteases: totalProteases,
+        unique_proteases: Array.from(uniqueProteases),
+        unique_genes: Array.from(uniqueGenes),
+        unique_protease_count: uniqueProteases.size,
+        unique_gene_count: uniqueGenes.size
+      };
+      // Proteases
+      const proteaseData = {};
+      for (const component of ecmComponents) {
+        for (const protease of component.proteases || []) {
+          if (!proteaseData[protease]) {
+            proteaseData[protease] = { targets: [] };
+          }
+          proteaseData[protease].targets.push(component.name);
+        }
+      }
+      setStats(stats);
+      setProteases(proteaseData);
+    } catch (err) {
+      setError('Failed to load analytics data');
+      console.error('Error computing analytics data:', err);
+    } finally {
+      setLoading(false);
+    }
   }, []);
 
   const COLORS = ['#0088FE', '#00C49F', '#FFBB28', '#FF8042', '#8884D8', '#82ca9d'];
@@ -122,10 +158,10 @@ const Analytics = () => {
           <Card>
             <CardContent>
               <Typography variant="h4" component="div" color="primary">
-                {stats?.unique_gene_count || 0}
+                {stats?.total_genes || 0}
               </Typography>
               <Typography color="textSecondary">
-                Unique Genes
+                Total Genes
               </Typography>
             </CardContent>
           </Card>
@@ -135,10 +171,10 @@ const Analytics = () => {
           <Card>
             <CardContent>
               <Typography variant="h4" component="div" color="primary">
-                {stats?.unique_protease_count || 0}
+                {stats?.total_proteases || 0}
               </Typography>
               <Typography color="textSecondary">
-                Unique Proteases
+                Total Proteases
               </Typography>
             </CardContent>
           </Card>
@@ -175,8 +211,8 @@ const Analytics = () => {
                   data={[
                     { name: 'ECM Components', value: stats?.total_ecm_components || 0 },
                     { name: 'Cell Types', value: stats?.total_cell_types || 0 },
-                    { name: 'Unique Genes', value: stats?.unique_gene_count || 0 },
-                    { name: 'Unique Proteases', value: stats?.unique_protease_count || 0 }
+                    { name: 'Unique Genes', value: stats?.total_genes || 0 },
+                    { name: 'Unique Proteases', value: stats?.total_proteases || 0 }
                   ]}
                   cx="50%"
                   cy="50%"
@@ -261,13 +297,13 @@ const Analytics = () => {
           <ListItem>
             <ListItemText 
               primary="Genetic Regulation"
-              secondary={`${stats?.unique_gene_count || 0} unique genes are involved in ECM synthesis and regulation, highlighting the complex genetic control of matrix composition.`}
+              secondary={`${stats?.total_genes || 0} unique genes are involved in ECM synthesis and regulation, highlighting the complex genetic control of matrix composition.`}
             />
           </ListItem>
           <ListItem>
             <ListItemText 
               primary="Proteolytic Regulation"
-              secondary={`${stats?.unique_protease_count || 0} different proteases regulate ECM turnover, with some targeting multiple components for coordinated matrix remodeling.`}
+              secondary={`${stats?.total_proteases || 0} different proteases regulate ECM turnover, with some targeting multiple components for coordinated matrix remodeling.`}
             />
           </ListItem>
         </List>

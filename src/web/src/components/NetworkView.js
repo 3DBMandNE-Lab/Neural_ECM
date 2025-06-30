@@ -14,7 +14,8 @@ import {
   Alert
 } from '@mui/material';
 import * as d3 from 'd3';
-import { api } from '../utils/api';
+import ecmDataJson from '../data/ecm_components.json';
+import cellTypesJson from '../data/cell_types.json';
 
 const NetworkView = () => {
   const [interactions, setInteractions] = useState(null);
@@ -25,19 +26,52 @@ const NetworkView = () => {
   const svgRef = useRef();
 
   useEffect(() => {
-    const fetchInteractions = async () => {
-      try {
-        const response = await api.get('/api/interactions');
-        setInteractions(response.data);
-      } catch (err) {
-        setError('Failed to load interaction data');
-        console.error('Error fetching interactions:', err);
-      } finally {
-        setLoading(false);
+    // Build interactions from local JSON data
+    try {
+      const ecmComponents = ecmDataJson.ecm_components || [];
+      const cellTypes = cellTypesJson.cell_types || [];
+      const interactions = {
+        ecm_to_cell: {},
+        cell_to_ecm: {},
+        protease_network: {}
+      };
+      // ECM to cell type interactions
+      for (const component of ecmComponents) {
+        interactions.ecm_to_cell[component.name] = {
+          cell_types: component.interacting_cell_types || [],
+          receptors: component.receptors || [],
+          interaction_partners: component.interaction_partners || []
+        };
       }
-    };
-
-    fetchInteractions();
+      // Cell type to ECM interactions
+      for (const cell of cellTypes) {
+        interactions.cell_to_ecm[cell.name] = {
+          produces: (cell.ecm_components_produced || []).map(c => c.component),
+          degrades: (cell.ecm_degrading_factors || []).map(f => f.factor),
+          receptors: []
+        };
+        for (const receptorCategory of cell.ecm_receptors || []) {
+          for (const receptor of receptorCategory.receptors || []) {
+            interactions.cell_to_ecm[cell.name].receptors.push(receptor.name);
+          }
+        }
+      }
+      // Protease network
+      for (const component of ecmComponents) {
+        for (const protease of component.proteases || []) {
+          if (!interactions.protease_network[protease]) {
+            interactions.protease_network[protease] = [];
+          }
+          interactions.protease_network[protease].push(component.name);
+        }
+      }
+      setInteractions(interactions);
+    } catch (err) {
+      setError('Failed to load interaction data');
+      console.error('Error building interactions:', err);
+    } finally {
+      setLoading(false);
+    }
   }, []);
 
   useEffect(() => {

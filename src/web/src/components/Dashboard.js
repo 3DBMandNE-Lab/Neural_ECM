@@ -22,7 +22,8 @@ import {
   TrendingUp as TrendingIcon
 } from '@mui/icons-material';
 import { PieChart, Pie, Cell, ResponsiveContainer, BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend } from 'recharts';
-import { api } from '../utils/api';
+import ecmDataJson from '../data/ecm_components.json';
+import cellTypesJson from '../data/cell_types.json';
 
 const Dashboard = () => {
   const [stats, setStats] = useState(null);
@@ -30,19 +31,46 @@ const Dashboard = () => {
   const [error, setError] = useState(null);
 
   useEffect(() => {
-    const fetchStats = async () => {
-      try {
-        const response = await api.get('/api/stats');
-        setStats(response.data);
-      } catch (err) {
-        setError('Failed to load dashboard data');
-        console.error('Error fetching stats:', err);
-      } finally {
-        setLoading(false);
+    // Compute stats from local JSON data
+    try {
+      const ecmComponents = ecmDataJson.ecm_components || [];
+      const cellTypes = cellTypesJson.cell_types || [];
+      const uniqueGenes = new Set();
+      const uniqueProteases = new Set();
+      let totalGenes = 0;
+      let totalProteases = 0;
+      for (const component of ecmComponents) {
+        const genes = component.genes || [];
+        if (Array.isArray(genes)) {
+          totalGenes += genes.length;
+          genes.forEach(g => uniqueGenes.add(g));
+        } else if (typeof genes === 'object') {
+          for (const geneList of Object.values(genes)) {
+            totalGenes += geneList.length;
+            geneList.forEach(g => uniqueGenes.add(g));
+          }
+        }
+        const proteases = component.proteases || [];
+        totalProteases += proteases.length;
+        proteases.forEach(p => uniqueProteases.add(p));
       }
-    };
-
-    fetchStats();
+      const stats = {
+        total_ecm_components: ecmComponents.length,
+        total_cell_types: cellTypes.length,
+        total_genes: totalGenes,
+        total_proteases: totalProteases,
+        unique_proteases: Array.from(uniqueProteases),
+        unique_genes: Array.from(uniqueGenes),
+        unique_protease_count: uniqueProteases.size,
+        unique_gene_count: uniqueGenes.size
+      };
+      setStats(stats);
+    } catch (err) {
+      setError('Failed to load dashboard data');
+      console.error('Error computing dashboard stats:', err);
+    } finally {
+      setLoading(false);
+    }
   }, []);
 
   const COLORS = ['#0088FE', '#00C49F', '#FFBB28', '#FF8042', '#8884D8'];
