@@ -1,18 +1,371 @@
 {
   "cell_types": [
     {
-      "name": "Astrocyte",
+      "name": "Neurons",
       "ecm_components_produced": [
-        {"component": "Hyaluronic Acid (HA)", "function": "ECM hydration"}
+        {
+          "component": "Hyaluronic Acid",
+          "genes": ["HAS1", "HAS2", "HAS3"],
+          "function": "Maintains brain hydration and provides scaffolding during development"
+        },
+        {
+          "component": "Reelin",
+          "function": "Secreted during development for neuronal migration and positioning"
+        },
+        {
+          "component": "Tenascin-R",
+          "function": "Expressed primarily in adult neurons, supporting synaptic plasticity and myelination"
+        }
       ],
       "ecm_degrading_factors": [
-        {"factor": "MMP-2", "function": "ECM degradation"}
+        {
+          "factor": "Matrix Metalloproteinases (MMPs)",
+          "specific_enzymes": [
+            {
+              "name": "MMP-9",
+              "function": "Released during synaptic activity to remodel the perisynaptic ECM and facilitate synaptic plasticity"
+            },
+            {
+              "name": "MMP-3",
+              "function": "Involved in axonal growth and repair"
+            }
+          ]
+        },
+        {
+          "factor": "Tissue Plasminogen Activator (tPA)",
+          "function": "Degrades fibrin and activates latent MMPs during synaptic remodeling and plasticity"
+        }
       ],
       "ecm_receptors": [
-        {"category": "Integrins", "receptors": [
-          {"name": "ITGA1", "function": "ECM binding"}
-        ]}
+        {
+          "category": "Hyaluronic Acid Receptors",
+          "receptors": [
+            {
+              "name": "CD44",
+              "function": "Anchors neurons to hyaluronic acid and regulates migration and plasticity"
+            },
+            {
+              "name": "RHAMM (HMMR)",
+              "function": "Facilitates migration and repair processes"
+            }
+          ]
+        },
+        {
+          "category": "Integrins",
+          "receptors": [
+            {
+              "name": "Integrin α1β1",
+              "function": "Interacts with type IV collagen and laminins for neurite outgrowth and axonal pathfinding"
+            },
+            {
+              "name": "Integrin α3β1",
+              "function": "Interacts with type IV collagen and laminins for neurite outgrowth and axonal pathfinding"
+            },
+            {
+              "name": "Integrin α5β1",
+              "function": "Binds to fibronectin"
+            },
+            {
+              "name": "Integrin α6β1",
+              "function": "Binds laminins in the basement membranes to guide migration"
+            }
+          ]
+        },
+        {
+          "category": "Other Receptors",
+          "receptors": [
+            {
+              "name": "Neurexins and Neuroligins",
+              "function": "Mediate interactions with ECM glycoproteins and synaptic partners"
+            },
+            {
+              "name": "PSA-NCAM",
+              "function": "Recognizes and modulates interactions with hyaluronic acid and CSPGs, facilitates neuronal migration"
+            },
+            {
+              "name": "Ephrin Receptors (Ephs) and Ephrins",
+              "function": "Create repulsive borders to prevent neurons from migrating outside designated layers"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Astrocytes",
+      "ecm_components_produced": [
+        {
+          "component": "Chondroitin Sulfate Proteoglycans (CSPGs)",
+          "specific_proteins": ["Brevican", "Neurocan", "Aggrecan", "Versican"],
+          "function": "Elevated during glial scar formation in response to injury"
+        },
+        {
+          "component": "Laminins",
+          "specific_types": ["Laminin-211", "Laminin-511"],
+          "function": "Contribute to basement membrane structure and astrocyte polarity"
+        },
+        {
+          "component": "Hyaluronic Acid",
+          "genes": ["HAS1", "HAS2", "HAS3"],
+          "function": "Synthesized especially during inflammation or injury"
+        }
+      ],
+      "ecm_degrading_factors": [
+        {
+          "factor": "Hyaluronidases",
+          "function": "Break down hyaluronic acid to modulate ECM stiffness and repair processes"
+        },
+        {
+          "factor": "MMPs",
+          "specific_enzymes": [
+            {
+              "name": "MMP-2",
+              "function": "Degrade CSPGs and remodel the ECM during injury or inflammation"
+            },
+            {
+              "name": "MMP-9",
+              "function": "Degrade CSPGs and remodel the ECM during injury or inflammation"
+            }
+          ]
+        },
+        {
+          "factor": "ADAMTS",
+          "specific_enzymes": ["ADAMTS4", "ADAMTS5"],
+          "function": "Degrade CSPGs during injury"
+        }
+      ],
+      "ecm_receptors": [
+        {
+          "category": "Integrins",
+          "receptors": [
+            {
+              "name": "Integrin α2β1",
+              "function": "Interacts with fibrillar collagens in the perivascular space"
+            },
+            {
+              "name": "Integrin α1β1",
+              "function": "Bind to laminins and fibronectin for glial limitans and scar formation"
+            },
+            {
+              "name": "Integrin α6β1",
+              "function": "Bind laminins in basement membranes to anchor astrocytic endfeet"
+            },
+            {
+              "name": "Integrin α7β1",
+              "function": "Bind laminins in basement membranes to anchor astrocytic endfeet"
+            }
+          ]
+        },
+        {
+          "category": "Other Receptors",
+          "receptors": [
+            {
+              "name": "Dystroglycans",
+              "function": "Bind to laminins in the ECM, essential for maintaining polarity and BBB region"
+            },
+            {
+              "name": "CD44",
+              "function": "Binds hyaluronic acid, CSPGs and perlecan, promotes migration during injury"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Microglia",
+      "ecm_components_produced": [
+        {
+          "component": "Fibronectin",
+          "function": "Produced during development or in response to injury to support repair"
+        },
+        {
+          "component": "Tenascin-C",
+          "function": "Synthesized during inflammation to regulate immune responses and matrix remodeling"
+        }
+      ],
+      "ecm_degrading_factors": [
+        {
+          "factor": "MMPs",
+          "specific_enzymes": [
+            {
+              "name": "MMP-2",
+              "function": "Secreted during inflammation and injury to degrade the ECM"
+            },
+            {
+              "name": "MMP-9",
+              "function": "Secreted during inflammation and injury to degrade the ECM"
+            },
+            {
+              "name": "MMP-12",
+              "function": "Secreted during inflammation and injury to degrade the ECM"
+            }
+          ]
+        },
+        {
+          "factor": "Cathepsins",
+          "specific_enzymes": ["Cathepsin B", "Cathepsin S"],
+          "function": "Lysosomal enzymes that degrade ECM proteins during pathological conditions"
+        }
+      ],
+      "ecm_receptors": [
+        {
+          "category": "Integrins",
+          "receptors": [
+            {
+              "name": "Integrin αMβ2 (CD11b/CD18)",
+              "function": "Binds to fibrinogen, fibronectin, vitronectin, and complement components"
+            },
+            {
+              "name": "Integrin αvβ3",
+              "function": "Interacts with vitronectin in areas of ECM remodeling"
+            }
+          ]
+        },
+        {
+          "category": "Other Receptors",
+          "receptors": [
+            {
+              "name": "CD44 and RHAMM",
+              "function": "Interact with hyaluronic acid for migration and niche maintenance"
+            },
+            {
+              "name": "CX3CR1",
+              "function": "Guides microglia along fractalkine gradients during immune surveillance"
+            },
+            {
+              "name": "Toll-Like Receptors (TLRs)",
+              "function": "Recognize altered ECM patterns to direct migration to regions of injury"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Oligodendrocytes",
+      "ecm_components_produced": [
+        {
+          "component": "Tenascin-C",
+          "function": "Contributes to regulation of myelin sheath formation and axonal support"
+        },
+        {
+          "component": "CSPGs",
+          "function": "Secreted during development to regulate axonal guidance and during demyelination"
+        },
+        {
+          "component": "Laminins",
+          "specific_types": ["Laminin-2"],
+          "function": "Supports oligodendrocyte differentiation and myelination"
+        }
+      ],
+      "ecm_degrading_factors": [
+        {
+          "factor": "MMPs",
+          "specific_enzymes": [
+            {
+              "name": "MMP-7",
+              "function": "Involved in ECM remodeling during developmental myelination and repair"
+            },
+            {
+              "name": "MMP-9",
+              "function": "Involved in ECM remodeling during developmental myelination and repair"
+            }
+          ]
+        },
+        {
+          "factor": "ADAMTS Proteins",
+          "function": "Degrade CSPGs during remyelination"
+        }
+      ],
+      "ecm_receptors": [
+        {
+          "category": "Integrins",
+          "receptors": [
+            {
+              "name": "Integrin α6β1",
+              "function": "Anchors oligodendrocytes to laminins to guide OPCs and Oligos to axons"
+            }
+          ]
+        },
+        {
+          "category": "Other Receptors",
+          "receptors": [
+            {
+              "name": "Dystroglycans",
+              "function": "Bind to laminins in the ECM and myelin sheaths"
+            },
+            {
+              "name": "Contactin and Neurofascin",
+              "function": "Facilitate interactions with ECM and axonal surfaces"
+            },
+            {
+              "name": "NG2/CSPG4",
+              "function": "Allows OPCs to interact with perineuronal nets and ECM in white matter"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Endothelial Cells",
+      "ecm_components_produced": [
+        {
+          "component": "Collagen IV",
+          "function": "Major component of the vascular basement membrane"
+        },
+        {
+          "component": "Laminins",
+          "specific_types": ["Laminin-411", "Laminin-511"],
+          "function": "Essential for maintaining vascular integrity"
+        },
+        {
+          "component": "Fibronectin",
+          "function": "Supports angiogenesis and vascular repair"
+        },
+        {
+          "component": "Perlecan",
+          "function": "Heparan sulfate proteoglycan critical for basement membrane structure"
+        }
+      ],
+      "ecm_degrading_factors": [
+        {
+          "factor": "MMPs",
+          "specific_enzymes": [
+            {
+              "name": "MMP-2",
+              "function": "Released during angiogenesis and BBB remodeling"
+            },
+            {
+              "name": "MMP-9",
+              "function": "Released during angiogenesis and BBB remodeling"
+            }
+          ]
+        },
+        {
+          "factor": "Plasminogen Activators",
+          "specific_enzymes": ["uPA", "tPA"],
+          "function": "Degrade fibrin and activate MMPs during vascular repair"
+        },
+        {
+          "factor": "Cathepsins",
+          "function": "Degrade basement membrane components during pathological vascular remodeling"
+        }
+      ],
+      "ecm_receptors": [
+        {
+          "category": "Integrins",
+          "receptors": [
+            {
+              "name": "Integrin α5β1",
+              "function": "Interacts with fibronectin during angiogenesis"
+            }
+          ]
+        }
       ]
     }
-  ]
+  ],
+  "metadata": {
+    "description": "Cell type-specific ECM interactions in the brain",
+    "version": "1.0.0",
+    "last_updated": "2025-01-01",
+    "source": "Brain_ECM.md"
+  }
 } 
