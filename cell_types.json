@@ -1,0 +1,18 @@
+{
+  "cell_types": [
+    {
+      "name": "Astrocyte",
+      "ecm_components_produced": [
+        {"component": "Hyaluronic Acid (HA)", "function": "ECM hydration"}
+      ],
+      "ecm_degrading_factors": [
+        {"factor": "MMP-2", "function": "ECM degradation"}
+      ],
+      "ecm_receptors": [
+        {"category": "Integrins", "receptors": [
+          {"name": "ITGA1", "function": "ECM binding"}
+        ]}
+      ]
+    }
+  ]
+} 
