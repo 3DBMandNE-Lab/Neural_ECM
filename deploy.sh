@@ -51,6 +51,6 @@ if [ $? -ne 0 ]; then
 fi
 
 echo "🎉 Deployment completed successfully!"
-echo "🌐 Your application is now available at: https://3dbmne-fr.github.io/Neural_ECM"
+echo "🌐 Your application is now available at: https://3dbmandne-lab.github.io/Neural_ECM"
 echo ""
 echo "📝 Note: It may take a few minutes for the changes to appear on GitHub Pages." 

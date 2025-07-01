@@ -2,11 +2,12 @@
   "name": "neural-ecm-web",
   "version": "1.0.0",
   "description": "Interactive web application for exploring Neural ECM data",
-  "homepage": "https://3dbmne-fr.github.io/Neural_ECM",
+  "homepage": "https://3dbmandne-lab.github.io/Neural_ECM",
   "main": "index.js",
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
+    "postbuild": "cp public/ecm_components.json build/ && cp public/cell_types.json build/",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "predeploy": "npm run build",
